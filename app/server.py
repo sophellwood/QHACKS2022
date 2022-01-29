@@ -47,3 +47,18 @@ def login():
             return redirect(url_for('index'))
     return render_template('login.html',  title='Sign In', form=form)
 
+@app.route('/<short>')
+def return_url(short):
+    db_data = URL.query.all()
+    print(short)
+    short = request.host_url + short
+    print(short)
+    for i in db_data:
+        if short == i.short_url:
+            print(i.og_url)
+            return redirect(i.og_url)
+
+    return render_template('index.html', title='Home')
+
+
+
