@@ -38,7 +38,7 @@ def login():
         print(url)
         new_url = create_url(5)
         print(new_url)
-        
+        new_url = request.host_url + new_url
         if form.validate_on_submit():
             dburl = URL(og_url = url, short_url = new_url)
             db.session.add(dburl)
@@ -47,17 +47,3 @@ def login():
             return redirect(url_for('index'))
     return render_template('login.html',  title='Sign In', form=form)
 
-# @app.route("/login", methods=["GET", "POST"])
-# def login():
-#     #check the request method to ensure the handling of POST request only
-#     # if request.method == "POST":
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         url = form.username.data
-#         flash(url)
-#             # store the user details in the user database table
-#         dburl = User(username = url, user_email = url, user_password = url)
-#         db.session.add(dburl)
-#         db.session.commit()
-#         return redirect(url_for('index'))
-#     return render_template('login.html',  title='Sign In', form=form)
