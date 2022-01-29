@@ -3,10 +3,25 @@ from app import app
 from app.forms import LoginForm
 from app import db
 from app.models import URL
+import secrets
+import string
+ 
+
 
 
 def create_url(chars):
-    return "98379283u0"
+    # random_url = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(chars))
+    random_url = ''.join(secrets.choice(string.digits) for i in range(chars))
+
+    db_data = URL.query.all()
+
+    for i in db_data:
+        if i.short_url == random_url:
+            print("id", id)
+            print("url:",i.short_url)
+            create_url(chars)
+
+    return random_url
 
 @app.route('/')
 @app.route('/index')
@@ -23,11 +38,18 @@ def login():
         req = request.form
         url = req.get("username") 
         print(url)
-        new_url = create_url(5)
+        new_url = create_url(1)
+        # db_data = URL.query.all()
+
+        # for i in db_data:
+        #     if i.short_url == new_url:
+        #         print(i)
+        #         create_url(1)
+
         print(new_url)
         
         if form.validate_on_submit():
-            dburl = URL(old_url = url, new_url = new_url)
+            dburl = URL(og_url = url, short_url = new_url)
             db.session.add(dburl)
             db.session.commit()
             print("Successful submission")
@@ -48,40 +70,3 @@ def login():
 #         db.session.commit()
 #         return redirect(url_for('index'))
 #     return render_template('login.html',  title='Sign In', form=form)
-
-
-# @app.route('/login', methods=['GET', 'POST'])
-# def login():
-#     form = LoginForm()
-#     if form.validate_on_submit():
-#         url = form.username.data
-#         # flash(url)
-#         if url.find("https://") == -1:
-#             url = "https://" + url
-#             flash(url)
-#         else:
-#             flash(url)
-
-#         # flash('Login requested for user {}, remember_me={}'.format(
-#         #      form.username.data, form.remember_me.data))
-#         return redirect(url_for('index'))
-#     return render_template('login.html',  title='Sign In', form=form)
-
-
-
-
-        # #store the form value
-        # user_name = request.form["username"]
-        # email = request.form["email"]
-        # password = request.form["password"]
-        
-        
-        
-        # add the user object to the database
-        
-        
-        # commit changes to the database 
-        
-    #     return 'User registration successful'
-
-    # return render_template('register.html')

@@ -8,5 +8,5 @@ from app import db
 
 class URL(db.Model):
     id = db.Column(db.Integer, primary_key =True)
-    old_url = db.Column(db.Text(), nullable = False)
-    new_url = db.Column(db.Text(), nullable= False)
+    og_url = db.Column(db.Text(), nullable = False)
+    short_url = db.Column(db.Text(), nullable= False)
