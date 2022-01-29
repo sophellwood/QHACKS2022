@@ -23,10 +23,7 @@ def create_url(chars):
     return random_url
 
 @app.route('/')
-@app.route('/index')
-def index():
 
-    return render_template('index.html', title='Your URL')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -50,24 +47,19 @@ def login():
                 flash("not a valid url")
                 return render_template('login.html',  title='Home', form=form)
                 
-            #return redirect(url_for('index'))
             dburl = URL(og_url = url, short_url = new_url)
             db.session.add(dburl)
             db.session.commit()
-            print("Successful submission")
             flash(new_url)
-            return redirect(url_for('index'))
+            return redirect(url_for('login'))
     return render_template('login.html',  title='Home', form=form)
 
 @app.route('/<short>')
 def return_url(short):
     db_data = URL.query.all()
-    print(short)
     short = request.host_url + short
-    print(short)
     for i in db_data:
         if short == i.short_url:
-            print(i.og_url)
             return redirect(i.og_url)
 
-    return render_template('index.html')
+    return render_template('login.html')
