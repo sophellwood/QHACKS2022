@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <div class="alert alert-info">
+            <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+
+
+
     <h1>Enter your URL</h1>
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
@@ -13,8 +27,10 @@
                 <button type="submit" class="btn btn-primary">Submit URL</button>
             </div>
             </form>
-            {% for error in form.username.errors %}
+            <!-- {% for error in form.username.errors %}
             <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
+            {% endfor %} -->
+
     </form>
+    
 {% endblock %}

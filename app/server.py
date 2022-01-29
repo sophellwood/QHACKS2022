@@ -50,6 +50,7 @@ def login():
             dburl = URL(og_url = url, short_url = new_url)
             db.session.add(dburl)
             db.session.commit()
+            
             flash(new_url)
             return redirect(url_for('login'))
     return render_template('login.html',  title='Home', form=form)
