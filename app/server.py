@@ -13,13 +13,13 @@ def create_url(chars):
     # random_url = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(chars))
     random_url = ''.join(secrets.choice(string.digits) for i in range(chars))
 
-    # db_data = URL.query.all()
+    db_data = URL.query.all()
 
-    # for i in db_data:
-    #     if i.short_url == random_url:
-    #         print("id", id)
-    #         print("url:",i.short_url)
-    #         create_url(chars)
+    for i in db_data:
+        if random_url == i.short_url:
+            print("id", id)
+            print("url:",i.short_url)
+            return create_url(chars)
 
     return random_url
 
