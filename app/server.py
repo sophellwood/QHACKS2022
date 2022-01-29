@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from app import app
 from app.forms import LoginForm
 from app import db
-from app.models import User
+from app.models import URL
 
 
 def create_url(chars):
@@ -27,7 +27,7 @@ def login():
         print(new_url)
         
         if form.validate_on_submit():
-            dburl = User(username = url, user_email = new_url, user_password = url)
+            dburl = URL(old_url = url, new_url = new_url)
             db.session.add(dburl)
             db.session.commit()
             print("Successful submission")

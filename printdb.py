@@ -1,8 +1,10 @@
 from app import db
-from app.models import User
+from app.models import URL
 
-user_data = User.query.all()
+db_data = URL.query.all()
 
-for user in user_data:
-    print(user.username)
-    print(user.user_email)
+for i in db_data:
+    print("id: ", i.id)
+    print("old url: ", i.old_url)
+    print("new url: ",i.new_url)
+
