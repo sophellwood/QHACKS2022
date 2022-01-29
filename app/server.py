@@ -22,11 +22,8 @@ def create_url(chars):
 
     return random_url
 
-@app.route('/')
 
-
-
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if request.method == "POST":
