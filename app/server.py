@@ -10,15 +10,13 @@ import string
 
 
 def create_url(chars):
-    # random_url = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(chars))
-    random_url = ''.join(secrets.choice(string.digits) for i in range(chars))
+    random_url = ''.join(secrets.choice(string.ascii_letters + string.digits) for i in range(chars))
+    # random_url = ''.join(secrets.choice(string.digits) for i in range(chars))
 
     db_data = URL.query.all()
 
     for i in db_data:
         if random_url == i.short_url:
-            print("id", id)
-            print("url:",i.short_url)
             return create_url(chars)
 
     return random_url
@@ -38,14 +36,7 @@ def login():
         req = request.form
         url = req.get("username") 
         print(url)
-        new_url = create_url(1)
-        # db_data = URL.query.all()
-
-        # for i in db_data:
-        #     if i.short_url == new_url:
-        #         print(i)
-        #         create_url(1)
-
+        new_url = create_url(5)
         print(new_url)
         
         if form.validate_on_submit():
