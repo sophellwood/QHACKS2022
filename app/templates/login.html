@@ -1,36 +1,76 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul>
-        {% for message in messages %}
-        <div class="alert alert-info">
-            <strong>{{ message }}</strong>
-        </div>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
 
 
+    <div class = "container">
+        <div class="jumbotron text-center max-width = 576px">
 
-    <h1>Enter your URL</h1>
-    <form action="" method="post" novalidate>
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=42) }}<br>
+            <h1 class = "display-4">Enter your URL</h1>
+            <p class="lead"> Nice text </p>
 
+            <hr class="my-4">
 
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Submit URL</button>
-            </div>
+            <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+        
+                   
+        
+                    {{ form.username.label }}<br>
+                    <div style="max-width:400px;margin-left:auto;margin-right:auto;">
+                        {{ form.username(class_="form-control", placeholder="Enter a URL") }}
+                    </div>
+        
+                    <br>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Submit URL</button>
+                    </div>
+                    <!-- {% for error in form.username.errors %}
+                    <span style="color: red;">[{{ error }}]</span>
+                    {% endfor %} -->
+        
             </form>
-            <!-- {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %} -->
 
-    </form>
+            <!-- <form action="" method="post" novalidate>
+                {{ form.hidden_tag() }}
+                <p>
+                    {{ form.username.label }}<br>
+                    {{ form.username(size=42) }}<br>
+
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-lg">Submit URL</button>
+                    </div>
+                    </form>
+
+
+            </form> -->
+
+            <br>
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <div class="alert alert-info">
+                    <strong>{{ message }}</strong>
+                </div>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    
+
+<!-- <form data-bitwarden-watching="1">
+      <div class="form-group">
+        <label for="url" class="form-label mt-4">Enter a URL</label>
+        <input type="string" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter a URL">
+      </div>
+  </form> -->
+  
+  
     
 {% endblock %}
