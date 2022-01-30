@@ -16,9 +16,9 @@
                 <p>
         
                    
-                    <div class="lead">
+                    <!-- <div class="lead">
                     {{ form.username.label }}
-                    </div>
+                    </div> -->
                     <br>
                     <div style="max-width:400px;margin-left:auto;margin-right:auto;background-color: rgba(255, 255, 255, 0.1);">
                         {{ form.username(class_="form-control", placeholder="Enter a URL") }}
@@ -52,10 +52,30 @@
             <div class="lead">
             <ul>
                 {% for message in messages %}
-                <div class="alert alert-info" style="max-width:400px;margin-left:auto;margin-right:auto;">
+                {% if short_url %}
+                <div class="card text-white mb-3" style="max-width:400px;margin-left:auto;margin-right:auto;">
+                    <div class="card-body">
                     <a href="{{ message }}"><strong>{{ message }}</strong></a> 
-                    
                 </div>
+                </div>
+                {% else %}
+                <div class="card mb-3" style="max-width:400px;margin-left:auto;margin-right:auto;">
+                    <div class="card-body">
+                    <strong>{{ message }}</strong>
+                </div>
+                </div>
+
+                {% endif %}
+
+                <!-- <div class="card text-white mb-3" style="max-width:400px;margin-left:auto;margin-right:auto;">
+                    <div class="card-body">
+                <!-- <div class="alert alert-info" style="max-width:400px;margin-left:auto;margin-right:auto;"> -->
+                    <!-- <a href="{{ message }}"><strong>{{ message }}</strong></a>  -->
+<!-- 
+                    </div>
+                </div> -->
+                    
+                <!-- </div> -->
                 {% endfor %}
             </ul>
             </div>

@@ -31,7 +31,6 @@ def login():
         url = req.get("username") 
         print(url)
         
-
         new_url = create_url(5)
         print(new_url)
         new_url = request.host_url + new_url
@@ -41,7 +40,7 @@ def login():
             if url.find("https://") == -1:
                 url = "https://" + url
             if not validators.url(url):
-                flash("not a valid url")
+                flash("Please enter a valid URL")
                 return render_template('login.html',  title='Home', form=form)
                 
             dburl = URL(og_url = url, short_url = new_url)
@@ -49,7 +48,7 @@ def login():
             db.session.commit()
             
             flash(new_url)
-            return redirect(url_for('login'))
+            return render_template('login.html',  title='Home', form=form, short_url=new_url)
     return render_template('login.html',  title='Home', form=form)
 
 @app.route('/<short>')
