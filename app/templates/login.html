@@ -16,9 +16,11 @@
                 <p>
         
                    
-        
-                    {{ form.username.label }}<br>
-                    <div style="max-width:400px;margin-left:auto;margin-right:auto;">
+                    <div class="lead">
+                    {{ form.username.label }}
+                    </div>
+                    <br>
+                    <div style="max-width:400px;margin-left:auto;margin-right:auto;background-color: rgba(255, 255, 255, 0.1);">
                         {{ form.username(class_="form-control", placeholder="Enter a URL") }}
                     </div>
         
@@ -48,16 +50,20 @@
             </form> -->
 
             <br>
-
+            
             {% with messages = get_flashed_messages() %}
             {% if messages %}
+            <div class="lead">
             <ul>
                 {% for message in messages %}
-                <div class="alert alert-info">
-                    <strong>{{ message }}</strong>
+                <div class="alert alert-info" style="max-width:400px;">
+                    <a href="{{ message }}"><strong>{{ message }}</strong></a> 
+                    
                 </div>
                 {% endfor %}
             </ul>
+            </div>
+
             {% endif %}
             {% endwith %}
         </div>
